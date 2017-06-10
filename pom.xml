@@ -9,7 +9,6 @@
 	<packaging>jar</packaging>
 
 	<name>profile-module</name>
-	<description>Demo project for Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -47,4 +46,6 @@
 	</build>
 
 
+	<description>profile-module handle the RESTful API about:
+- retrieve all profile information;</description>
 </project>
