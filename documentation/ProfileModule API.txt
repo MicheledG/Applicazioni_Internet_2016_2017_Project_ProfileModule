@@ -1,0 +1,15 @@
+AuthenticationModule API: 
+
+1) GET PROFILE
+-- request URL: /profile
+-- request method: GET
+-- request headers: 
+- "Authorization" = Bearer lagnlsdfngdkfngsldifngslfdngsdgk
+
+-- response:
+--- SUCCESS:
+-- HTTP STATUS CODE: 200, OK
+-- HTTP BODY:
+{
+	//the profile information
+}
