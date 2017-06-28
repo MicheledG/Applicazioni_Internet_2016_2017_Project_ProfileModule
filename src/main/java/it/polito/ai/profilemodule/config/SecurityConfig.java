@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -49,7 +50,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			// Security policy
 			.authorizeRequests()
 				// Any request must be authenticated
-				.anyRequest().authenticated().and()
+				.anyRequest().authenticated()
+				// Excepted for CORS preflighted requests
+				.antMatchers(HttpMethod.OPTIONS).permitAll().and()
 			// Custom filter for authenticating users using tokens
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 			// Disable resource caching, enable only if the client app is external to this modoule

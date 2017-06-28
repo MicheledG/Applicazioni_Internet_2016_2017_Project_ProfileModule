@@ -3,6 +3,7 @@ package it.polito.ai.profilemodule.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,6 +18,7 @@ import it.polito.ai.profilemodule.service.ProfileService;
  * - change the password.
  */
 @RestController
+@CrossOrigin(origins="*")
 @RequestMapping("/profile")
 public class ProfileController {
 	
