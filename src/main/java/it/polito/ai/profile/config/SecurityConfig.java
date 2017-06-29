@@ -52,10 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// Allow anonymous access for creating a new profile (from AuthModule)
 				// TODO add authentication between microservices
 				.antMatchers(HttpMethod.POST,"/profile").permitAll()
-				// Any request must be authenticated
-				.anyRequest().authenticated()
 				// Excepted for CORS preflighted requests
-				.antMatchers(HttpMethod.OPTIONS).permitAll().and()
+				.antMatchers(HttpMethod.OPTIONS).permitAll()
+				// Any request must be authenticated
+				.anyRequest().authenticated().and()
 			// Custom filter for authenticating users using tokens
 			.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 			// Disable resource caching, enable only if the client app is external to this modoule

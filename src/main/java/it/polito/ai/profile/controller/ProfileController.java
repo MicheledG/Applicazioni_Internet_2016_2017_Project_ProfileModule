@@ -21,7 +21,7 @@ import it.polito.ai.profile.service.ProfileService;
  * - change the password.
  */
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins="*", allowedHeaders="Authorization")
 @RequestMapping("/profile")
 public class ProfileController {
 	
