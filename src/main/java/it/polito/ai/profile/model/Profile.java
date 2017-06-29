@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.model;
+package it.polito.ai.profile.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

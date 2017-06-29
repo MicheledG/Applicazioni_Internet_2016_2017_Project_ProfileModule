@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.config;
+package it.polito.ai.profile.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

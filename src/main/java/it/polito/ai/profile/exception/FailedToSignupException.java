@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.exception;
+package it.polito.ai.profile.exception;
 
 public class FailedToSignupException extends Exception {
 	

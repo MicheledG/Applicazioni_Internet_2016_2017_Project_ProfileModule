@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.security;
+package it.polito.ai.profile.security;
 
 import java.util.Date;
 import java.util.UUID;
@@ -62,6 +62,12 @@ public class JWTHandler {
 		
 	}
 
+	/**
+	 * Parse and verify a token to extract the relative username.
+	 * 
+	 * @param token
+	 * @return
+	 */
 	public static String getUsernameFromToken(String token) {
 		return parse(token);
 	}

@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.security;
+package it.polito.ai.profile.security;
 
 import static java.util.Collections.emptyList;
 
@@ -17,13 +17,12 @@ public class JWTRemoteServiceImpl implements JWTRemoteService {
 	
 	@Override
 	public Authentication getRemoteAuthentication(String token) {
-		
-		//query the remote /authentication endpoint
-		//1) create the request body
+
+		// Create the request body containing the token
 		Map<String, String> requestBody = new HashMap<>();
 		requestBody.put("token", token);
 		
-		//2) send the request
+		// Send a POST request to the Authentication Module
 		RestTemplate restTemplate = new RestTemplate();
 		RemoteAuthentication remoteAuthentication;
 		try {
@@ -33,17 +32,16 @@ public class JWTRemoteServiceImpl implements JWTRemoteService {
 					RemoteAuthentication.class);
 			
 		} catch (Exception e) {
-			//no authentication obtained
-			//TODO: debug!
+			// Authentication failed
 			System.err.println(e.getMessage());
 			return null;
 		}
 		
-		//3) create the UserPasswordAuthenticationToken with the authentication remotely obtained
+		// Create a new Authentication object using the data received from the Authentication Module
 		String username = remoteAuthentication.getUsername();
 		
-		if(username == null){
-			//no correct authentication obtained
+		if (username == null) {
+			// Remote authentication failed
 			return null;
 		}
 		

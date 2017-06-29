@@ -1,10 +1,10 @@
-package it.polito.ai.profilemodule.service;
+package it.polito.ai.profile.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.polito.ai.profilemodule.model.Profile;
-import it.polito.ai.profilemodule.repository.ProfileRepository;
+import it.polito.ai.profile.model.Profile;
+import it.polito.ai.profile.repository.ProfileRepository;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -25,6 +25,11 @@ public class ProfileServiceImpl implements ProfileService {
 	@Override
 	public String getNickname(String username) {
 		return profileRepository.findOneByUsername(username).getNickname();
+	}
+
+	@Override
+	public void createProfile(Profile profile) {
+		profileRepository.save(profile);
 	}
 
 }

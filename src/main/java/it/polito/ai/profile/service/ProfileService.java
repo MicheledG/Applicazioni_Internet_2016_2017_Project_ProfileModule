@@ -1,6 +1,6 @@
-package it.polito.ai.profilemodule.service;
+package it.polito.ai.profile.service;
 
-import it.polito.ai.profilemodule.model.Profile;
+import it.polito.ai.profile.model.Profile;
 
 public interface ProfileService {
 
@@ -9,5 +9,7 @@ public interface ProfileService {
 	public void addProfile(Profile profile);
 
 	public String getNickname(String username);
+
+	public void createProfile(Profile profile);
 
 }

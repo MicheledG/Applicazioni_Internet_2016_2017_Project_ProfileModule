@@ -1,15 +1,18 @@
-package it.polito.ai.profilemodule.controller;
+package it.polito.ai.profile.controller;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.polito.ai.profilemodule.model.Profile;
-import it.polito.ai.profilemodule.service.ProfileService;
+import it.polito.ai.profile.model.Profile;
+import it.polito.ai.profile.service.ProfileService;
 
 /**
  * RestController for handling profiles:
@@ -39,13 +42,26 @@ public class ProfileController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		
-		//TODO: debug purpose
-		//profile = profileService.getProfile(username);
-		//return profile;
+		profile = profileService.getProfile(username);
+		return profile;
 		
-		Profile debugProfile = new Profile();
-		debugProfile.setNickname(username);
-		return debugProfile;
+	}
+	
+	/**
+	 * Create a new profile given a username and a nickname.
+	 * 
+	 * @param requestBody
+	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public void createProfile(@RequestBody Map<String, String> requestBody) {
+		
+		String username = requestBody.get("username");
+		String nickname = requestBody.get("nickname");
+		
+		Profile profile = new Profile(username, nickname);
+		
+		profileService.createProfile(profile);
+		
 	}
 
 }

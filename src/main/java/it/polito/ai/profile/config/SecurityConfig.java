@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.config;
+package it.polito.ai.profile.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -13,9 +13,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import it.polito.ai.profilemodule.security.JWTAuthenticationEntryPoint;
-import it.polito.ai.profilemodule.security.JWTAuthenticationFilter;
-import it.polito.ai.profilemodule.security.JWTAuthenticationProvider;
+import it.polito.ai.profile.security.JWTAuthenticationEntryPoint;
+import it.polito.ai.profile.security.JWTAuthenticationFilter;
+import it.polito.ai.profile.security.JWTAuthenticationProvider;
 
 @Configuration
 @EnableWebSecurity
@@ -49,6 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			// Security policy
 			.authorizeRequests()
+				// Allow anonymous access for creating a new profile (from AuthModule)
+				// TODO add authentication between microservices
+				.antMatchers(HttpMethod.POST,"/profile").permitAll()
 				// Any request must be authenticated
 				.anyRequest().authenticated()
 				// Excepted for CORS preflighted requests

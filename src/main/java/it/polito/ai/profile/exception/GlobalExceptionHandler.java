@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.exception;
+package it.polito.ai.profile.exception;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;

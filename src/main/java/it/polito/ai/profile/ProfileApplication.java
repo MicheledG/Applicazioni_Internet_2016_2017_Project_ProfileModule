@@ -1,12 +1,12 @@
-package it.polito.ai.profilemodule;
+package it.polito.ai.profile;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProfileModuleApplication {
+public class ProfileApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProfileModuleApplication.class, args);
+		SpringApplication.run(ProfileApplication.class, args);
 	}
 }

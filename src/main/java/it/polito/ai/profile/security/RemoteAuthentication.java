@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.security;
+package it.polito.ai.profile.security;
 
 public class RemoteAuthentication {
 	

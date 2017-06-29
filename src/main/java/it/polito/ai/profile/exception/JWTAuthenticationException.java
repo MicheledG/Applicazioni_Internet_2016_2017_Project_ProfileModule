@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.exception;
+package it.polito.ai.profile.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

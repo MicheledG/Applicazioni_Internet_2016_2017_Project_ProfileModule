@@ -1,7 +1,4 @@
-package it.polito.ai.profilemodule.security;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
+package it.polito.ai.profile.security;
 
 import org.springframework.security.core.Authentication;
 
@@ -10,12 +7,11 @@ public interface JWTRemoteService {
 	/**
 	 * The JWTAuthenticationProvider calls this method to verify the user authentication.
 	 * If the token is not valid, the authentication fails and the request will be refused.
+	 * For the verification the services provided bu the Authentication Module are exploited.
 	 * 
 	 * @param token	An authentication token to verify.
 	 * @return
-	 * @throws URISyntaxException 
-	 * @throws IOException 
 	 */
-	Authentication getRemoteAuthentication(String token) throws IOException, URISyntaxException;
+	Authentication getRemoteAuthentication(String token);
 
 }

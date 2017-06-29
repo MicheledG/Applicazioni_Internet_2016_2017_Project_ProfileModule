@@ -1,4 +1,4 @@
-package it.polito.ai.profilemodule.security;
+package it.polito.ai.profile.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -7,13 +7,13 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
-import it.polito.ai.profilemodule.exception.JWTAuthenticationException;
+import it.polito.ai.profile.exception.JWTAuthenticationException;
 
 @Component
 public class JWTAuthenticationProvider implements AuthenticationProvider {
 	
 	@Autowired
-	private JWTRemoteService jwtService;
+	private JWTRemoteService jwtRemoteService;
 
 	@Override
 	public Authentication authenticate(Authentication tokenAuthentication) throws AuthenticationException {
@@ -21,7 +21,7 @@ public class JWTAuthenticationProvider implements AuthenticationProvider {
 		Authentication userAuthentication;
 		
 		try {
-			userAuthentication = jwtService.getRemoteAuthentication((String)tokenAuthentication.getCredentials());
+			userAuthentication = jwtRemoteService.getRemoteAuthentication((String)tokenAuthentication.getCredentials());
 		} catch(Exception e) {
 			throw new JWTAuthenticationException("Token verification failed", e);
 		}
