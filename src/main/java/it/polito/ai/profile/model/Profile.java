@@ -1,5 +1,6 @@
 package it.polito.ai.profile.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -16,6 +17,7 @@ public class Profile {
 	@Indexed(unique = true)
 	private String username;
 	
+	@NotEmpty
 	@Indexed(unique = true)
 	private String nickname;
 	

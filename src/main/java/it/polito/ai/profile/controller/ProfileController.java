@@ -21,7 +21,7 @@ import it.polito.ai.profile.service.ProfileService;
  * - change the password.
  */
 @RestController
-@CrossOrigin(origins="*", allowedHeaders="Authorization")
+@CrossOrigin(origins="*", allowedHeaders={"Accept", "Authorization", "Content-Type"})
 @RequestMapping("/profile")
 public class ProfileController {
 	
@@ -61,6 +61,26 @@ public class ProfileController {
 		Profile profile = new Profile(username, nickname);
 		
 		profileService.createProfile(profile);
+		
+	}
+	
+	/**
+	 * Update the profile of the authenticated user.
+	 * 
+	 * @param profile
+	 */
+	@RequestMapping(method = RequestMethod.PUT)
+	public Profile updateProfile(@RequestBody Profile profile) {
+		
+		System.err.println(profile.getNickname() + " " + profile.getEducation());
+		
+		// Get the username of the authenticated user from the SecurityContext
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		
+		Profile updatedProfile = profileService.updateProfile(username, profile);
+		
+		return updatedProfile;
 		
 	}
 

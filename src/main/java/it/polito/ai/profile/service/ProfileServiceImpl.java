@@ -32,4 +32,10 @@ public class ProfileServiceImpl implements ProfileService {
 		profileRepository.save(profile);
 	}
 
+	@Override
+	public Profile updateProfile(String username, Profile profile) {
+		profile.setUsername(username);
+		return profileRepository.save(profile);
+	}
+
 }
