@@ -14,12 +14,10 @@ The authentication token must be placed in the http request as `Authentication` 
 
 ## REST Services
 
-### Profile
-
 | API	               | Method | Req. body  | Query params | Status | Resp. body | Meaning    					  |
 |:--------------------:|:------:|:----------:|:------------:|:------:|:----------:|:-------------------------------|
 | `/profile`           | `GET`  |            |              | 200    | profile    | Get the profile of the current logged user |
-| `/profile`           | `POST` | username, nickname |              | 201    |            | Create a profile for a new registered user |
+| `/profile`           | `POST` | username, nickname |      | 201    |            | Create a profile for a new registered user |
 |                      |        |            |              | 409    |            | A profile for the same username already exists |
 | `/profile`           | `PUT`  | profile    |              | 200    | profile    | Update the profile of the current logged user |
 |                      |        |            |              | 404    |            | A profile for the requested username doesn't exist |

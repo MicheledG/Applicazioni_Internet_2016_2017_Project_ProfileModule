@@ -52,6 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// Allow anonymous access for creating a new profile (from AuthModule)
 				// TODO add authentication between microservices
 				.antMatchers(HttpMethod.POST,"/profile").permitAll()
+				// Allow anonymous access to "/profile/nickname" (only POST requests)
+				.antMatchers(HttpMethod.GET,"/profile/nickname").permitAll()
 				// Excepted for CORS preflighted requests
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				// Any request must be authenticated

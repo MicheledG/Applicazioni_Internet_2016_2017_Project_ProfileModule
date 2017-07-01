@@ -16,21 +16,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-    @ResponseStatus(UNAUTHORIZED)
-    @ExceptionHandler(FailedToLoginException.class)
-    public void failedToLogin() {
-    }
-
+	
     @ResponseStatus(FORBIDDEN)
     @ExceptionHandler(SignatureException.class)
-    public void failedToVerify() {
+    public void failedToVerifyTokenSignature() {
         System.out.println("");
-    }
-    
-    @ResponseStatus(BAD_REQUEST)
-    @ExceptionHandler(FailedToSignupException.class)
-    public void failedToSignup() {
     }
     
     @ResponseStatus(UNAUTHORIZED)
