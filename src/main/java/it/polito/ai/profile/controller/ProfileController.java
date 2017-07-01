@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.polito.ai.profile.exception.ProfileCreationConflict;
+import it.polito.ai.profile.exception.ProfileConflictException;
 import it.polito.ai.profile.model.Profile;
 import it.polito.ai.profile.service.ProfileService;
 
@@ -59,11 +59,11 @@ public class ProfileController {
 	 * Create a new profile given a username and a nickname.
 	 * 
 	 * @param requestBody
-	 * @throws ProfileCreationConflict 
+	 * @throws ProfileConflictException 
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public void createProfile(@RequestBody Map<String, String> requestBody) throws ProfileCreationConflict {
+	public void createProfile(@RequestBody Map<String, String> requestBody) throws ProfileConflictException {
 		
 		String username = requestBody.get("username");
 		String nickname = requestBody.get("nickname");
@@ -72,7 +72,7 @@ public class ProfileController {
 		
 		// If there is already a profile with the same username => 409
 		if (!profileService.createProfile(profile)) {
-			throw new ProfileCreationConflict(profile.getUsername());
+			throw new ProfileConflictException(profile.getUsername());
 		}
 		
 	}
@@ -81,10 +81,11 @@ public class ProfileController {
 	 * Update the profile of the authenticated user.
 	 * 
 	 * @param profile
+	 * @throws ProfileConflictException 
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(code = HttpStatus.OK)
-	public Profile updateProfile(@Validated @RequestBody Profile profile) {
+	public Profile updateProfile(@Validated @RequestBody Profile profile) throws ProfileConflictException {
 		
 		// If the profile fails validation => 400
 		

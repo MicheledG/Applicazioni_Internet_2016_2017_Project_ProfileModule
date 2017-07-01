@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
     }
     
     @ResponseStatus(CONFLICT)
-    @ExceptionHandler(ProfileCreationConflict.class)
+    @ExceptionHandler(ProfileConflictException.class)
     public void profileConflict() {
     }
     

@@ -3,6 +3,7 @@ package it.polito.ai.profile.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.polito.ai.profile.exception.ProfileConflictException;
 import it.polito.ai.profile.model.Profile;
 import it.polito.ai.profile.repository.ProfileRepository;
 
@@ -36,7 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public Profile updateProfile(String username, Profile profile) {
+	public Profile updateProfile(String username, Profile profile) throws ProfileConflictException {
 		
 		// Check if the profile exists
 		if (profileRepository.findOneByUsername(username) == null) {
@@ -48,7 +49,14 @@ public class ProfileServiceImpl implements ProfileService {
 		profile.setProfileId(profileId);
 		profile.setUsername(username);
 		
-		return profileRepository.save(profile);
+		Profile updatedProfile = null;
+		try {
+			updatedProfile = profileRepository.save(profile);
+		} catch (Exception e) {
+			throw new ProfileConflictException(username);
+		}
+		
+		return updatedProfile;
 	}
 
 }

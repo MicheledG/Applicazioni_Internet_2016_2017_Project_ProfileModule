@@ -24,5 +24,6 @@ If a wrong authentication token is provided, a `401 Unauthorized` code is return
 | `/profile`           | `PUT`  | Profile    |              | 200    | Profile    | Update the profile of the current logged user |
 |                      |        |            |              | 400    |            | The profile is not valid, bad request |
 |                      |        |            |              | 404    |            | A profile for the requested username doesn't exist |
+|                      |        |            |              | 409    |            | Nickname uniqueness constraint violated |
 | `/profile/nickname`  | `GET`  |            | username     | 200    | nickname   | Get the nickname associated to the username param |
 |                      |        |            |              | 404    |            | A profile for the requested username doesn't exist |
