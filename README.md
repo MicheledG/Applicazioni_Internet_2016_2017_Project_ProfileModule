@@ -8,9 +8,9 @@ This microservice requires authentication for any request.
 
 Authentication is based on a token (JWT), obtained by providing the right credentials to the Authentication Microservice.
 
-The authentication token must be placed in the http request as `Authentication` header:
+The authentication token must be placed in the http request as `Authorization` header:
 
-`Authentication: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	` 
+`Authorization: Bearer XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX	` 
 
 If a wrong authentication token is provided, a `401 Unauthorized` code is returned.
 
