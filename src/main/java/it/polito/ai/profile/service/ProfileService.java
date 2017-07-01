@@ -6,11 +6,9 @@ public interface ProfileService {
 
 	public Profile getProfile(String username);
 
-	public void addProfile(Profile profile);
-
 	public String getNickname(String username);
 
-	public void createProfile(Profile profile);
+	public boolean createProfile(Profile profile);
 
 	public Profile updateProfile(String username, Profile profile);
 

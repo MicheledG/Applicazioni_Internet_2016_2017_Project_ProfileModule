@@ -1,5 +1,9 @@
 package it.polito.ai.profile.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -11,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Profile {
 
 	@Id
+	@JsonIgnore
 	private String profileId;
 	
 	@JsonIgnore
@@ -19,15 +24,22 @@ public class Profile {
 	
 	@NotEmpty
 	@Indexed(unique = true)
+	@Pattern(regexp = "[a-z-A-Z_]*")
 	private String nickname;
 	
+	@Pattern(regexp = "[a-z-A-Z]*")
 	private String gender;
+	
+	@Min(0)
+	@Max(120)
 	private int age;
 	private String education;
 	private String job;
 	
 	private String ownCar;
 	private String fuel;
+	@Min(1900)
+	@Max(2017)
 	private int registrationCarYear;
 	private String useCarSharing;
 	private String carSharingCompany;

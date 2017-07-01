@@ -18,23 +18,36 @@ public class ProfileServiceImpl implements ProfileService {
 	}
 
 	@Override
-	public void addProfile(Profile profile) {
-		profileRepository.save(profile);
-	}
-
-	@Override
 	public String getNickname(String username) {
 		return profileRepository.findOneByUsername(username).getNickname();
 	}
 
 	@Override
-	public void createProfile(Profile profile) {
+	public boolean createProfile(Profile profile) {
+		
+		// Check if there is already a profile with the same username
+		if (profileRepository.findOneByUsername(profile.getUsername()) != null) {
+			return false;
+		}
+		
 		profileRepository.save(profile);
+		
+		return true;
 	}
 
 	@Override
 	public Profile updateProfile(String username, Profile profile) {
+		
+		// Check if the profile exists
+		if (profileRepository.findOneByUsername(username) == null) {
+			return null;
+		}
+		
+		// Set the profile id and username
+		String profileId = profileRepository.findOneByUsername(username).getProfileId();
+		profile.setProfileId(profileId);
 		profile.setUsername(username);
+		
 		return profileRepository.save(profile);
 	}
 
