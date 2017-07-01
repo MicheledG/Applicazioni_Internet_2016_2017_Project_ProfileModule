@@ -18,10 +18,10 @@ If a wrong authentication token is provided, a `401 Unauthorized` code is return
 
 | API	               | Method | Req. body  | Query params | Status | Resp. body | Meaning    					  |
 |:--------------------:|:------:|:----------:|:------------:|:------:|:----------:|:-------------------------------|
-| `/profile`           | `GET`  |            |              | 200    | profile    | Get the profile of the current logged user |
+| `/profile`           | `GET`  |            |              | 200    | Profile    | Get the profile of the current logged user |
 | `/profile`           | `POST` | username, nickname |      | 201    |            | Create a profile for a new registered user |
 |                      |        |            |              | 409    |            | A profile for the same username already exists |
-| `/profile`           | `PUT`  | profile    |              | 200    | profile    | Update the profile of the current logged user |
+| `/profile`           | `PUT`  | Profile    |              | 200    | Profile    | Update the profile of the current logged user |
 |                      |        |            |              | 400    |            | The profile is not valid, bad request |
 |                      |        |            |              | 404    |            | A profile for the requested username doesn't exist |
 | `/profile/nickname`  | `GET`  |            | username     | 200    | nickname   | Get the nickname associated to the username param |
