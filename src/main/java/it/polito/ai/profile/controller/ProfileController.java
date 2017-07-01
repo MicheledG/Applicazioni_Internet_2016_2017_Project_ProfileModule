@@ -6,14 +6,15 @@ import java.util.NoSuchElementException;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.polito.ai.profile.exception.ProfileCreationConflict;
@@ -40,6 +41,7 @@ public class ProfileController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET)
+	@ResponseStatus(code = HttpStatus.OK)
 	public Profile getProfile() {
 		
 		Profile profile;
@@ -60,6 +62,7 @@ public class ProfileController {
 	 * @throws ProfileCreationConflict 
 	 */
 	@RequestMapping(method = RequestMethod.POST)
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public void createProfile(@Validated @RequestBody Map<String, String> requestBody) throws ProfileCreationConflict {
 		
 		String username = requestBody.get("username");
@@ -80,6 +83,7 @@ public class ProfileController {
 	 * @param profile
 	 */
 	@RequestMapping(method = RequestMethod.PUT)
+	@ResponseStatus(code = HttpStatus.OK)
 	public Profile updateProfile(@Validated @RequestBody Profile profile) {
 		
 		// Get the username of the authenticated user from the SecurityContext
@@ -97,7 +101,14 @@ public class ProfileController {
 		
 	}
 	
+	/**
+	 * Get the nickname associated with the username passed as a query parameter.
+	 * 
+	 * @param username
+	 * @return
+	 */
 	@RequestMapping(path = "/nickname", method = RequestMethod.GET)
+	@ResponseStatus(code = HttpStatus.OK)
 	public String getNickname(@PathParam(value = "username") String username) {
 
 		String nickname = profileService.getNickname(username);
