@@ -33,23 +33,35 @@ public class Profile {
 	@Min(0)
 	@Max(120)
 	private int age;
+	@Pattern(regexp = "(primary)|(middle)|(high)|(bachelor)|(master)|(phd)")
 	private String education;
+	@Pattern(regexp = "(worker)|(student)|(unemployed)")
 	private String job;
 	
+	@Pattern(regexp = "(yes)|(no)")
 	private String ownCar;
+	@Pattern(regexp = "(ethanol)|(methanol)|(gasoline)|(diesel)|(naturalGas)|(hydrogen)")
 	private String fuel;
 	@Min(1900)
 	@Max(2017)
 	private int registrationCarYear;
+	@Pattern(regexp = "(yes)|(no)")
 	private String useCarSharing;
+	@Pattern(regexp = "(car2go)|(enjoy)")
 	private String carSharingCompany;
 	
+	@Pattern(regexp = "(yes)|(no)")
 	private String useBike;
+	@Pattern(regexp = "(yes)|(no)")
 	private String useownBike;
+	@Pattern(regexp = "(yes)|(no)")
 	private String useBikeSharing;
+	@Pattern(regexp = "(tobike)|(other)")
 	private String bikeSharingCompany;
 	
+	@Pattern(regexp = "(yes)|(no)")
 	private String usePublicTransport;
+	@Pattern(regexp = "(single)|(weekly)|(annual)|(student)")
 	private String frequentTicketType;
 	
 	private String avatar;
