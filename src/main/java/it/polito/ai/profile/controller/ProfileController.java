@@ -63,7 +63,7 @@ public class ProfileController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public void createProfile(@Validated @RequestBody Map<String, String> requestBody) throws ProfileCreationConflict {
+	public void createProfile(@RequestBody Map<String, String> requestBody) throws ProfileCreationConflict {
 		
 		String username = requestBody.get("username");
 		String nickname = requestBody.get("nickname");
@@ -85,6 +85,8 @@ public class ProfileController {
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(code = HttpStatus.OK)
 	public Profile updateProfile(@Validated @RequestBody Profile profile) {
+		
+		// If the profile fails validation => 400
 		
 		// Get the username of the authenticated user from the SecurityContext
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
