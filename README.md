@@ -27,3 +27,5 @@ If a wrong authentication token is provided, a `401 Unauthorized` code is return
 |                      |        |            |              | 409    |            | Nickname uniqueness constraint violated |
 | `/profile/nickname`  | `GET`  |            | username     | 200    | nickname   | Get the nickname associated to the username param |
 |                      |        |            |              | 404    |            | A profile for the requested username doesn't exist |
+| `/profile/nick`      | `GET`  |            |              | 200    | Nickname   | Get the nickname of the current logged user |
+|                      |        |            |              | 404    |            | A nickname for the logged user doesn't exist |

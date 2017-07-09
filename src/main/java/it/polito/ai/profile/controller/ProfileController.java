@@ -1,6 +1,7 @@
 package it.polito.ai.profile.controller;
 
 import it.polito.ai.profile.exception.ProfileConflictException;
+import it.polito.ai.profile.model.Nickname;
 import it.polito.ai.profile.model.Profile;
 import it.polito.ai.profile.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,7 @@ import java.util.NoSuchElementException;
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = {"Accept", "Authorization", "Content-Type"})
 @RequestMapping("/profile")
-public class
-ProfileController {
+public class ProfileController {
 
     @Autowired
     private ProfileService profileService;
@@ -37,7 +37,7 @@ ProfileController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(code = HttpStatus.OK)
     public Profile getProfile() {
-
+    	
         Profile profile;
 
         // Get the username of the authenticated user from the SecurityContext
@@ -116,6 +116,31 @@ ProfileController {
         }
 
         return nickname;
+    }
+    
+    /**
+     * Get the nickname of the current authenticated user.
+     *
+     * @param username
+     * @return
+     */
+    @RequestMapping(path = "/nick", method = RequestMethod.GET)
+    @ResponseStatus(code = HttpStatus.OK)
+    public Nickname getNickname() {
+    	
+    	// Get the username of the authenticated user from the SecurityContext
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        // Get the nickname associated to the given username
+        String nickname = profileService.getNickname(username);
+
+        // If the profile doesn't exist => 404
+        if (nickname == null) {
+            throw new NoSuchElementException();
+        }
+
+        return new Nickname(nickname);
     }
 
 }
